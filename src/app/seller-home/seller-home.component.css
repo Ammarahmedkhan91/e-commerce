@@ -1,0 +1,35 @@
+.product-list{
+    text-align: center;
+}
+
+h1{
+    color: blueviolet;
+}
+
+table{
+    text-align: left;
+    color: blueviolet;
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+}
+
+td, th{
+    text-align: center;
+    border: 1px solid blueviolet;
+    padding: 10px;
+    max-width: 100px;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+.delete-icon{
+    cursor: pointer;
+}
+
+.adjust-update-link{
+    margin-left: 10px;
+}

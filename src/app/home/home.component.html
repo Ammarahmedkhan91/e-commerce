@@ -1,0 +1,35 @@
+<ngb-carousel *ngIf="popularProduct">
+	<ng-template ngbSlide *ngFor="let item of popularProduct">
+		<div class="picsum-img-wrapper">
+			<img class="carousel-header-image" src="{{item.image}}" alt="img" />
+		</div>
+		<div class="carousel-caption">
+			<h6>{{item.name}}</h6>
+			<p>{{item.description}}</p>
+		</div>
+	</ng-template>
+</ngb-carousel>
+
+<div class="container">
+	<div class="product-list-wrapper">
+		<h1>Trendy Products</h1>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="product-items">
+					<div class="product-image">
+						<img src="https://static.nike.com/a/images/t_default/qwqfyddzikcgc4ozwigp/revolution-5-mens-road-running-shoes-ZXqS6C.png" alt="">
+					</div>
+					<div class="product-details">
+						<div class="product-name"><h6>New Apple Mobile</h6></div>
+						<div class="product-price"><h6>Price: 100000</h6></div>
+						<div class="product-color"><h6>color: blue</h6></div>
+					</div>
+					<div class="product-footer">
+						<a href="">Details</a>
+						<a href="">Add to cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
