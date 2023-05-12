@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
+import { product } from '../data-type';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +12,11 @@ export class HeaderComponent implements OnInit {
 
   menuType: string = 'default';
   seller: any = '';
-  sellerName: string = ''
+  sellerName: string = '';
+  searchResult: undefined | product[];
+  searchNotFound: undefined | string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private product: ProductService) { }
 
   ngOnInit(): void {
     this.router.events.subscribe((val: any) => {
@@ -32,6 +36,36 @@ export class HeaderComponent implements OnInit {
   logOut() {
     localStorage.removeItem('seller');
     this.router.navigate(['/'])
+  }
+
+  searchProducts(value: string) {
+    if (value) {
+      this.product.searchProducts(value).subscribe((result) => {  
+
+        if (result.length >= 5) {
+          result.length = 5;
+        } else if (result.length == 0) {
+          this.searchNotFound = "Search not found";
+        } else if (this.searchResult) {
+          this.searchNotFound = undefined;
+        }
+        this.searchResult = result;
+      })
+    }
+    else{
+      this.searchResult = undefined;
+      this.searchNotFound = undefined;
+    }
+  }
+
+  hideSearchProducts() {
+    this.searchResult = undefined;
+    this.searchNotFound = undefined
+  }
+
+  submitSearch(searchVal: string) {
+    this.router.navigate([`search/${searchVal}`])
+    window.location.replace(`/search/${searchVal}`)
   }
 
 }

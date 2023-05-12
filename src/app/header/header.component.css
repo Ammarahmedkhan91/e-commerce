@@ -29,7 +29,8 @@
 
 .nav .nav-search {
     display: flex;
-    flex: 1;
+    /* flex: 1; */
+    width: 30vw;
     margin-top: 5px;
     margin-left: 5%;
     margin-right: 5%;
@@ -61,4 +62,29 @@ li a {
 
 .nav button{
     cursor: pointer;
+}
+
+.suggested-result {
+    display: list-item !important;
+    position: absolute;
+    z-index: 10;
+    background-color: #fff;
+    width: 30vw;
+    top: 53px;
+    border: 1px solid #ddd;
+}
+
+.suggested-result li {
+    height: 50px;
+    padding: 5px;
+    padding-top: 12px;
+}
+
+.suggested-result li a {
+    cursor: pointer;
+    color: blueviolet;
+}
+
+.suggested-result li:hover{
+     border: 1px solid #ddd;
 }
