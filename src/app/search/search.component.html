@@ -1,18 +1,16 @@
-    <div class="row" *ngFor="let search of searchProduct">
-
-        <div class="col-sm-3">
-                <div class="search-image">
-                    <img src="{{search.image}} "alt="">
-                </div>
+<div class="row" *ngFor="let search of searchProduct">
+    <div class="col-sm-4">
+        <div class="search-image">
+            <img src="{{search.image}} " alt="">
         </div>
-            <div class="col-sm-3">
-                <div class="search-details">
-                    <h3>{{search.name}}</h3>
-                    <p><b>Price: {{search.price}}</b></p>
-                    <p>Color: {{search.color}}</p>
-                    <p>Category: {{search.category}}</p>
-                    <p>Description: {{search.description}}</p>
-                </div>
-            </div>  
-            
+    </div>
+    <div class="col-sm-8 ">
+        <div class="search-details">
+            <p class="product-name">{{search.name}}</p>
+            <p class="product-price">Price: {{search.price}}</p>
+            <p>Color: {{search.color}}</p>
+            <p>Category: {{search.category}}</p>
+            <p>Description: {{search.description}}</p>
+            </div>         
+        </div>
     </div>

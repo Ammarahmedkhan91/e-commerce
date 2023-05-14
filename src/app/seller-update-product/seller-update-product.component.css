@@ -1,5 +1,8 @@
 h1{
-    color: blueviolet;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    color: #48afff;
 }
 
 .update-product{

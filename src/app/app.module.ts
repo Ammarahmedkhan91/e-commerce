@@ -25,7 +25,7 @@ import { SearchComponent } from './search/search.component';
     SellerHomeComponent,
     SellerAddProductComponent,
     SellerUpdateProductComponent,
-    SearchComponent,
+    SearchComponent
   ],
   imports: [
     NgbModule,

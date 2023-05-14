@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { product } from '../data-type';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   sellerName: string = '';
   searchResult: undefined | product[];
   searchNotFound: undefined | string;
+  searchIcon = faMagnifyingGlass;
 
   constructor(private router: Router, private product: ProductService) { }
 
@@ -64,8 +66,13 @@ export class HeaderComponent implements OnInit {
   }
 
   submitSearch(searchVal: string) {
-    this.router.navigate([`search/${searchVal}`])
-    window.location.replace(`/search/${searchVal}`)
+    if (searchVal) {    
+      this.router.navigate([`search/${searchVal}`])
+      window.location.replace(`/search/${searchVal}`)
+    }
+    else{
+      window.location.replace('/')
+    }
   }
 
 }

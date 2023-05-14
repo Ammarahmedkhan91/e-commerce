@@ -1,28 +1,35 @@
-<nav class="nav">
-    <h1><a routerLink="/"> E-COM</a></h1>
-    <div class="nav-search" *ngIf="menuType === 'default'">
-        <input type="text" placeholder="Search Products" #searchBar (keyup)="searchProducts(searchBar.value)" (blur)="hideSearchProducts()">
-        <button (click)="submitSearch(searchBar.value)">Search</button>
-        <ul class="suggested-result" *ngIf="searchResult">
-            <li *ngFor="let item of searchResult">
-                <a href="">{{item.name}}</a>
-            </li>
-        </ul>
-        <ul class="suggested-result" *ngIf="searchNotFound">
-            <li><a>{{searchNotFound}}</a></li>
-        </ul>
-    </div>
-    <div [ngSwitch]="menuType"> 
-        <ul *ngSwitchCase="'default'">
-            <li><a routerLink="#">Login</a></li>
-            <li><a routerLink="#">Cart(0)</a></li>
-            <li><a routerLink="seller-auth">Sellar</a></li>
-        </ul>
-        <ul *ngSwitchCase="'seller'">
-            <li><a>{{sellerName | titlecase}}</a></li>
-            <li><a routerLink="seller-add-product">Add Product</a></li>
-            <li><a routerLink="seller-home">Product List</a></li>
-            <li><a (click)="logOut()">Logout</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="conainer-fluid">
+    <nav class="nav">
+        <h1><b><a routerLink="/">E-COM</a></b></h1>
+        <div class="nav-search" *ngIf="menuType === 'default'">
+            <input class="form-control" type="search" placeholder="Search" #searchBar (keyup)="searchProducts(searchBar.value)" (blur)="hideSearchProducts()">
+            <!-- <button class="btn btn-outline-success" (click)="submitSearch(searchBar.value)">Search</button> -->
+            <button class="nav-btn" (click)="submitSearch(searchBar.value)">
+                <fa-icon [icon]="searchIcon"></fa-icon>
+            </button>
+
+            <ul class="suggested-result" *ngIf="searchResult">
+                <li *ngFor="let item of searchResult">
+                    <a href="">{{item.name}}</a>
+                </li>
+            </ul>
+            <ul class="suggested-result" *ngIf="searchNotFound">
+                <li><a>{{searchNotFound}}</a></li>
+            </ul>
+        </div>
+
+        <div class="menu" [ngSwitch]="menuType">
+            <ul *ngSwitchCase="'default'">
+                <li><a routerLink="#">Login</a></li>
+                <li><a routerLink="#">Cart(0)</a></li>
+                <li><a routerLink="seller-auth">Sellar</a></li>
+            </ul>
+            <ul *ngSwitchCase="'seller'">
+                <li><a>{{sellerName | titlecase}}</a></li>
+                <li><a routerLink="seller-add-product">Add Product</a></li>
+                <li><a routerLink="seller-home">Product List</a></li>
+                <li><a (click)="logOut()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

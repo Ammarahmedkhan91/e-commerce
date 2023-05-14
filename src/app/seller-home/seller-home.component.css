@@ -2,13 +2,15 @@
     text-align: center;
 }
 
-h1{
-    color: blueviolet;
+.product-list h1{
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    color: #48afff;
 }
 
 table{
     text-align: left;
-    color: blueviolet;
     border-collapse: collapse;
     width: 80%;
     margin: auto;
@@ -16,7 +18,7 @@ table{
 
 td, th{
     text-align: center;
-    border: 1px solid blueviolet;
+    border: 1px solid #c3c3c3;
     padding: 10px;
     max-width: 100px;
 }
@@ -28,8 +30,10 @@ img{
 
 .delete-icon{
     cursor: pointer;
+    color: #dc3545;
 }
 
 .adjust-update-link{
     margin-left: 10px;
+    color: #007bff;
 }
