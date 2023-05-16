@@ -22,8 +22,6 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     background-color: white;
-    /* height: 6vh; */
-    /* width: 5vw; */
 }
 
 .nav h1 a{
@@ -78,7 +76,7 @@ li a {
     z-index: 10;
     background-color: #fff;
     width: 30vw;
-    top: 64px;
+    top: 56px;
     border: 2px solid #ddd;
     border-radius: 8px;
     padding: unset;

@@ -3,14 +3,12 @@
         <h1><b><a routerLink="/">E-COM</a></b></h1>
         <div class="nav-search" *ngIf="menuType === 'default'">
             <input class="form-control" type="search" placeholder="Search" #searchBar (keyup)="searchProducts(searchBar.value)" (blur)="hideSearchProducts()">
-            <!-- <button class="btn btn-outline-success" (click)="submitSearch(searchBar.value)">Search</button> -->
             <button class="nav-btn" (click)="submitSearch(searchBar.value)">
                 <fa-icon [icon]="searchIcon"></fa-icon>
             </button>
-
             <ul class="suggested-result" *ngIf="searchResult">
                 <li *ngFor="let item of searchResult">
-                    <a href="">{{item.name}}</a>
+                    <a (mousedown)="redirectToDetails(item.id)">{{item.name}}</a>
                 </li>
             </ul>
             <ul class="suggested-result" *ngIf="searchNotFound">

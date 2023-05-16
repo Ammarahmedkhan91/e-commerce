@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
 
   searchProducts(value: string) {
     if (value) {
-      this.product.searchProducts(value).subscribe((result) => {  
+      this.product.searchProducts(value).subscribe((result) => {
 
         if (result.length >= 5) {
           result.length = 5;
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
         this.searchResult = result;
       })
     }
-    else{
+    else {
       this.searchResult = undefined;
       this.searchNotFound = undefined;
     }
@@ -66,12 +66,18 @@ export class HeaderComponent implements OnInit {
   }
 
   submitSearch(searchVal: string) {
-    if (searchVal) {    
-      this.router.navigate([`search/${searchVal}`])
-      window.location.replace(`/search/${searchVal}`)
+    if (searchVal) {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([`search/${searchVal}`]);
+      });
     }
-    else{
-      window.location.replace('/')
+  }
+
+  redirectToDetails(id: number) {
+    if (id) {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([`details/${id}`]);
+      });
     }
   }
 

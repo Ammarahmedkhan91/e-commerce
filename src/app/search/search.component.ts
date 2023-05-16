@@ -9,15 +9,17 @@ import { product } from '../data-type';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  
-  searchProduct:  undefined | product[]
 
-  constructor(private activeRoute: ActivatedRoute, private product: ProductService) {}
+  searchProduct: undefined | product[]
 
-  ngOnInit():void {
+  constructor(private activeRoute: ActivatedRoute, private product: ProductService) { }
+
+  ngOnInit(): void {
     let query = this.activeRoute.snapshot.paramMap.get('query')
-    query && this.product.searchProducts(query).subscribe((result)=> {
+    query && this.product.searchProducts(query).subscribe((result) => {
+      if (result.length > 0) {
         this.searchProduct = result;
+      }
     })
   }
 }

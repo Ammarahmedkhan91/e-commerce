@@ -1,31 +1,21 @@
-<div class="product-list">
+<div class="container">
     <h1>Product List</h1>
     <p class="message-p">{{productMessage}}</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Color</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of productList">
-                <td><img src={{item.image}}></td>
-                <td>{{item.name}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.color}}</td>
-                <td>{{item.category}}</td>
-                <td>{{item.description}}</td>
-                <td>
-                    <fa-icon class="delete-icon" [icon]="trash" (click)="deleteProduct(item.id)" title="delete"></fa-icon >
-                    <a class="adjust-update-link" routerLink="/seller-update-product/{{item.id}}"><fa-icon [icon]="edit"></fa-icon ></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row product" *ngFor="let item of productList">
+        <div class="col-sm-3">
+            <div class="product-image">
+                <img src="{{item.image}}" alt="">
+            </div>
+        </div>
+        <div class="col-sm-4 product-details">
+            <p><b>Name: </b>{{item.name}}</p>
+            <p><b>Price: </b>{{item.price}}</p>
+            <p><b>Color: </b>{{item.color}}</p>
+        </div>
+        <div class="col-sm-5 product-details">
+            <p><b>Category: </b>{{item.category}}</p>
+            <p><b>Description: </b>{{item.description}}</p>
+        </div>
+
+    </div>
 </div>
