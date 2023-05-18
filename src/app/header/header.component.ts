@@ -12,6 +12,8 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent implements OnInit {
 
   menuType: string = 'default';
+  user: any = '';
+  userName: string = '';
   seller: any = '';
   sellerName: string = '';
   searchResult: undefined | product[];
@@ -24,20 +26,30 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe((val: any) => {
       if (val.url) {
         if (localStorage.getItem('seller') && val.url.includes('seller')) {
-          this.menuType = 'seller';
           this.seller = localStorage.getItem('seller')
-          let sellerData = JSON.parse(this.seller)[0]
+          let sellerData = JSON.parse(this.seller)[0] || JSON.parse(this.seller)
           this.sellerName = sellerData.fName;
-        } else {
+          this.menuType = 'seller';
+        } else if (localStorage.getItem('user')) {
+          this.user = localStorage.getItem('user')
+          let userData = JSON.parse(this.user)[0] || JSON.parse(this.seller)
+          this.userName = userData.fName;
+          this.menuType = 'user';
+        } 
+        else {
           this.menuType = 'default';
         }
       }
     })
   }
 
-  logOut() {
+  sellerLogOut() {
     localStorage.removeItem('seller');
-    this.router.navigate(['/'])
+    this.router.navigate(['seller-auth'])
+  }
+  userLogOut() {
+    localStorage.removeItem('user');
+    this.router.navigate(['user-auth'])
   }
 
   searchProducts(value: string) {

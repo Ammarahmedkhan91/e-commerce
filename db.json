@@ -1,10 +1,19 @@
 {
-  "seller": [
+  "users": [
     {
       "fName": "Ammar",
       "lName": "Khan",
-      "email": "ammarkhan@gmail.com",
-      "password": "abc@123",
+      "email": "ammarkhan1@gmail.com",
+      "password": "Vs_code1",
+      "id": 1
+    }
+  ],
+  "sellers": [
+    {
+      "fName": "Harry",
+      "lName": "Potter",
+      "email": "harrypotter1@gmail.com",
+      "password": "Vs_code1",
       "id": 1
     }
   ],

@@ -40,13 +40,19 @@
 }
 
 .product-footer {
+    text-decoration: none;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 24px;
+}
+
+.product-footer a{
+    text-decoration: none;
+    color: #48afff;
 }
 
 @media only screen and (max-width: 576px){

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { product } from '../data-type';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seller-home',
@@ -16,7 +15,7 @@ export class SellerHomeComponent implements OnInit {
   trash = faTrash;
   edit = faEdit;
 
-  constructor(private product: ProductService, private router:Router) { }
+  constructor(private product: ProductService) { }
 
   ngOnInit(): void {
     this.list(); 

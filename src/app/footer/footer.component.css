@@ -1,0 +1,26 @@
+.footer {
+    position:absolute;
+    right: 0;
+    left: 0;
+    padding: 10px;
+    background-color: #48afff;
+    margin-top: 24px;
+}
+
+.footer ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.copyright {
+    color: black;
+    text-align: center;
+}

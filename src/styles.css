@@ -1,34 +1,74 @@
 body {
-    /* font-family: sans-serif; */
-    font-family: "Open Sans","Noto Nastaliq Urdu Draft","Roboto","Helvetica Neue","Helvetica","Arial",sans-serif;;
+    font-family: "Open Sans", "Noto Nastaliq Urdu Draft", "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;;
     padding: 0;
     margin: 0;
     background: #f1f3f6;
     box-sizing: border-box;
 }
 
-.common-form{
+.common-form {
     display: flex;
     flex-direction: column;
     width: 300px;
     margin: auto;
 }
-.form-input{
-    height: 35px;
-    margin-bottom: 20px;
+
+.form-input {
+    height: 34px;
+    margin-bottom: 16px;
     padding-left: 10px;
     border: 1px solid #48afff;
 }
-.form-btn{
+
+.form-btn {
     height: 35px;
     border: 1px solid #48afff;
     cursor: pointer;
 }
-.error-p{
+
+.signup,
+.login {
+    text-align: center;
+}
+
+.signup h3,
+.login h3 {
+    font-weight: 600;
+    margin-top: 50px;
+    margin-bottom: 32px;
+    color: #48afff;
+}
+
+.invalid-input {
+    color: red;
+    font-size: 14px;
+    margin-top: -15px;
+    text-align: left;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.auth-toggle-link {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    color: blue;
+}
+
+.align-left {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.error-p {
     color: red;
 }
 
-.message-p{
+.message-p {
     color: green;
 }
 
@@ -36,20 +76,21 @@ body {
     background: #ffffff;
 }
 
-.carousel-header-image{
+.carousel-header-image {
     width: 100%;
     height: 567px;
     height: 90vh;
     object-fit: contain;
 }
 
-.carousel-caption{
+.carousel-caption {
     text-align: center;
     background-color: #00000082;
     border-radius: 5px;
     height: 16vh;
 }
 
-.carousel-control-next-icon, .carousel-control-prev-icon{
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
     background-color: black;
 }

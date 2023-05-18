@@ -1,6 +1,6 @@
-<div class="seller-auth">
+<div class="user-auth">
     <div class="signup" *ngIf="!showLogin">
-        <h3>Seller Sign-Up</h3>
+        <h3>User Sign-Up</h3>
         <form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm.value)" class="common-form" autocomplete="off" novalidate>
             <input class="form-input" type="text" placeholder="First Name" name="fName" #firstName="ngModel" ngModel required minlength="3" maxlength="15">
             <div *ngIf="firstName.touched && firstName.invalid">

@@ -8,11 +8,17 @@ import { SellerAddProductComponent } from './seller-add-product/seller-add-produ
 import { SellerUpdateProductComponent } from './seller-update-product/seller-update-product.component';
 import { SearchComponent } from './search/search.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { UserAuthComponent } from './user-auth/user-auth.component';
 
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'home',
+    pathMatch: 'full' 
+  },
+  {
+    path: 'home',
     component: HomeComponent
   },
   {
@@ -41,6 +47,10 @@ const routes: Routes = [
   {
     path: 'details/:productId',
     component: ProductDetailsComponent
+  },
+  {
+    path: 'user-auth',
+    component: UserAuthComponent
   }
 ];
 
