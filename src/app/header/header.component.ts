@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
       this.cartItems = JSON.parse(cart).length;
     }
     this.product.cartLength.subscribe((items) => {
-      this.cartItems = items.length
+      this.cartItems = items.length;
     })
   }
 

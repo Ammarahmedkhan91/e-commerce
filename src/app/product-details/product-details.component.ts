@@ -8,22 +8,32 @@ import { ProductService } from '../services/product.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit{
+export class ProductDetailsComponent implements OnInit {
   productData: undefined | product;
-  productQuantity:number = 1;
+  productQuantity: number = 1;
+  removeCart: boolean = false;
 
-  constructor(private activatedRouter: ActivatedRoute, private product: ProductService) {}
+  constructor(private activatedRouter: ActivatedRoute, private product: ProductService) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     let productId = this.activatedRouter.snapshot.paramMap.get('productId')
-    if (productId) {
-      this.product.getProduct(productId).subscribe((result)=>{
-        this.productData = result;
-      })
+    productId && this.product.getProduct(productId).subscribe((result) => {
+      this.productData = result;
+    })
+
+    let cartData = localStorage.getItem('localCart');
+    if (productId && cartData) {
+      let items = JSON.parse(cartData)
+      items = items.filter((item: product) => productId === item.id.toString())
+      if (items.length) {
+        this.removeCart = true;
+      } else {
+        this.removeCart = false;
+      }
     }
   }
 
-  handleQuantity(val:string) {
+  handleQuantity(val: string) {
     if (this.productQuantity < 20 && val === 'plus') {
       this.productQuantity += 1;
     }
@@ -32,13 +42,19 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
-  addToCart(){
-    if(this.productData){
+  addToCart() {
+    if (this.productData) {
       this.productData.quantity = this.productQuantity;
       if (!localStorage.getItem('user')) {
         this.product.localAddToCart(this.productData)
+        this.removeCart = true;
       }
     }
+  }
+  
+  removeToCart(id:number){
+    this.product.localRemoveToCart(id);
+    this.removeCart = false;
   }
 
 }
