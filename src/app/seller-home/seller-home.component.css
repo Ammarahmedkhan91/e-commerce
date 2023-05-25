@@ -2,17 +2,20 @@ h1 {
     text-align: center;
     font-weight: 600;
     margin-top: 24px;
+    margin-bottom: 24px;
     color: #48afff;
 }
 
 .product {
-    margin-top: 24px;
+    margin-bottom: 24px;
     background-color: #ffffff;
     border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
 }
 
 .product-image {
     text-align: center;
+    padding-top: 16px;
 }
 
 .product-image img {
@@ -21,8 +24,18 @@ h1 {
 }
 
 .product-details {
-    padding: 8px;
-    padding-left: 16px;
+   padding: 16px;
+}
+
+.edit {
+    cursor: pointer;
+    margin-right: 12px;
+    color: #48afff;
+}
+
+.delete {
+    cursor: pointer;
+    color: red;
 }
 
 @media only screen and (max-width: 576px){

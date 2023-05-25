@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { product } from '../data-type';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCartShopping, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,6 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   menuType: string = 'default';
   user: any = '';
   userName: string = '';
@@ -19,6 +18,10 @@ export class HeaderComponent implements OnInit {
   searchResult: undefined | product[];
   searchNotFound: undefined | string;
   searchIcon = faMagnifyingGlass;
+  logo = faCartShopping;
+  bar = faBars;
+  time = faTimes;
+  cartItems = 0;
 
   constructor(private router: Router, private product: ProductService) { }
 
@@ -40,6 +43,14 @@ export class HeaderComponent implements OnInit {
           this.menuType = 'default';
         }
       }
+    })
+
+    let cart = localStorage.getItem('localCart');
+    if (cart) {
+      this.cartItems = JSON.parse(cart).length;
+    }
+    this.product.cartLength.subscribe((items) => {
+      this.cartItems = items.length
     })
   }
 

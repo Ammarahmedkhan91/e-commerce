@@ -17,5 +17,6 @@ export interface product{
     category:string,
     description:string,
     image:string,
+    quantity: undefined | number,
     id:number
 }

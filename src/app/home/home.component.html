@@ -1,14 +1,15 @@
-<ngb-carousel *ngIf="popularProducts">
-	<ng-template ngbSlide *ngFor="let items of popularProducts">
-		<div class="picsum-img-wrapper">
-			<a routerLink="/details/{{items.id}}"><img class="carousel-header-image" src="{{items.image}}" alt="img" /></a>
-		</div>
-		<div class="carousel-caption">
-			<h6>{{items.name}}</h6>
-			<p>{{items.description}}</p>
-		</div>
-	</ng-template>
-</ngb-carousel>
+<div class="container">
+	<ngb-carousel *ngIf="popularProducts">
+		<ng-template ngbSlide *ngFor="let items of popularProducts">
+			<div class="picsum-img-wrapper">
+				<a routerLink="/details/{{items.id}}"><img src="{{items.image}}" alt="img" /></a>
+			</div>
+			<div class="carousel-caption">
+				<h6>{{items.name}}</h6>
+			</div>
+		</ng-template>
+	</ngb-carousel>
+</div>
 <div class="container" *ngIf="trendyProducts">
 	<div class="product-list-wrapper">
 		<h3>Trendy Products</h3>

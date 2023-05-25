@@ -9,17 +9,15 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit{
-  productData: any = [];
+  productData: undefined | product;
   productQuantity:number = 1;
 
   constructor(private activatedRouter: ActivatedRoute, private product: ProductService) {}
 
   ngOnInit():void {
     let productId = this.activatedRouter.snapshot.paramMap.get('productId')
-    console.log(productId)
     if (productId) {
       this.product.getProduct(productId).subscribe((result)=>{
-        console.log(result)
         this.productData = result;
       })
     }
@@ -31,6 +29,15 @@ export class ProductDetailsComponent implements OnInit{
     }
     else if (this.productQuantity > 1 && val === 'min') {
       this.productQuantity -= 1;
+    }
+  }
+
+  addToCart(){
+    if(this.productData){
+      this.productData.quantity = this.productQuantity;
+      if (!localStorage.getItem('user')) {
+        this.product.localAddToCart(this.productData)
+      }
     }
   }
 

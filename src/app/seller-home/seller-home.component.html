@@ -15,6 +15,10 @@
         <div class="col-sm-5 product-details">
             <p><b>Category: </b>{{item.category}}</p>
             <p><b>Description: </b>{{item.description}}</p>
+            <div class="btn-upd-del">
+                <a routerLink="/seller-update-product/{{item.id}}"><fa-icon class="edit" [icon]="edit"></fa-icon></a>
+                <a (click)="deleteProduct(item.id)"><fa-icon class="delete" [icon]="trash"></fa-icon></a>
+            </div>
         </div>
 
     </div>

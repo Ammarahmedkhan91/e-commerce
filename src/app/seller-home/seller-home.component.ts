@@ -31,7 +31,6 @@ export class SellerHomeComponent implements OnInit {
 
   deleteProduct(id: number) {
     this.product.deleteProduct(id).subscribe((result) => {
-
       if (result) {
         this.productMessage = 'Product is deleted';
         setTimeout( () => this.productMessage = undefined, 2000)
