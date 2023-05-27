@@ -12,6 +12,7 @@ export class ProductDetailsComponent implements OnInit {
   productData: undefined | product;
   productQuantity: number = 1;
   removeCart: boolean = false;
+  cartData: product | undefined;
 
   constructor(private activatedRouter: ActivatedRoute, private product: ProductService) { }
 
@@ -36,14 +37,15 @@ export class ProductDetailsComponent implements OnInit {
     if (user) {
       let userId = user && JSON.parse(user)[0].id;
       this.product.getCartList(userId);
-      this.product.cartLength.subscribe((result)=> {
-      let item = result.filter((item:product)=> productId?.toString() === item.productId?.toString())
-      if (item.length) {
-        this.removeCart = true;
-      }
+      this.product.cartLength.subscribe((result) => {
+        let item = result.filter((item: product) => productId?.toString() === item.productId?.toString())
+        if (item.length) {
+          this.cartData = item[0];
+          this.removeCart = true;
+        }
       })
     }
-    
+
   }
 
   handleQuantity(val: string) {
@@ -84,7 +86,17 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   removeToCart(id: number) {
-    this.product.localRemoveToCart(id);
+    if (!localStorage.getItem('user')) {
+      this.product.localRemoveToCart(id);
+    } else {
+      let user = localStorage.getItem('user');
+      let userId = user && JSON.parse(user)[0].id;
+      this.cartData && this.product.removeToCart(this.cartData.id).subscribe((result) => {
+        if (result) {
+          this.product.getCartList(userId);
+        }
+      })
+    }
     this.removeCart = false;
   }
 

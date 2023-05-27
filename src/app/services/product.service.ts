@@ -72,12 +72,16 @@ export class ProductService {
   }
 
   getCartList(userId: number) {
-    return this.http.get<product[]>("http://localhost:3333/cart?userId="+userId,
+    return this.http.get<product[]>(`http://localhost:3333/cart?userId=${userId}`,
       { observe: 'response' }).subscribe((res) => {
         if (res && res.body) {       
           this.cartLength.emit(res.body);
         }
       });
+  }
+  
+  removeToCart(cartId: number){
+    return this.http.delete(`http://localhost:3333/cart/${cartId}`);
   }
 
 }
