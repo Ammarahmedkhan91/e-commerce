@@ -26,7 +26,7 @@
             </div>
 
             <button class="form-btn" [disabled]="signUpForm.invalid">SignUp</button>
-            <span class="align-left">Already have an account?<a class="auth-toggle-link" (click)="openLoginForm()">Click to Login</a></span>
+            <span class="align-left">Already have an account? <a class="auth-toggle-link" (click)="openLoginForm()">Click to Login</a></span>
         </form>
     </div>
     <div class="login" *ngIf="showLogin">
@@ -44,7 +44,7 @@
                 <p class="invalid-input" *ngIf="password.errors && password.errors['pattern']">Please Enter Strong Password</p>
             </div>
             <button class="form-btn" [disabled]="loginForm.invalid">Login</button>
-            <span class="align-left">Don't have an acoount?<a class="auth-toggle-link" (click)="openSignupForm()"> Click to Signup</a></span>
+            <span class="align-left">Don't have an acoount? <a class="auth-toggle-link" (click)="openSignupForm()"> Click to Signup</a></span>
         </form>
     </div>
 </div>

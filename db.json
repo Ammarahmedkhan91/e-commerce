@@ -6,6 +6,13 @@
       "email": "ammarkhan1@gmail.com",
       "password": "Vs_code1",
       "id": 1
+    },
+    {
+      "fName": "Nasir",
+      "lName": "Khan",
+      "email": "nasirkhan1@gmail.com",
+      "password": "Vs_code1",
+      "id": 2
     }
   ],
   "sellers": [
@@ -80,6 +87,20 @@
       "description": "This is a Samsung product",
       "image": "https://images.samsung.com/is/image/samsung/p6pim/nl/2208/gallery/nl-galaxy-z-fold4-f936-sm-f936bzkbeub-thumb-533132151?$264_264_PNG$",
       "id": 7
+    }
+  ],
+  "cart": [
+    {
+      "name": "OPPO A16e",
+      "price": "43,199",
+      "category": "Mobile",
+      "color": "Black",
+      "description": "Oppo Product",
+      "image": "https://www.pakmobizone.pk/wp-content/uploads/2022/03/Oppo-A16e-Midnight-Black-3.jpg",
+      "quantity": 1,
+      "userId": 1,
+      "productId": 1,
+      "id": 1
     }
   ]
 }

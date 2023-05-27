@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { product } from '../data-type';
+import { cart, product } from '../data-type';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -31,6 +31,19 @@ export class ProductDetailsComponent implements OnInit {
         this.removeCart = false;
       }
     }
+
+    let user = localStorage.getItem('user');
+    if (user) {
+      let userId = user && JSON.parse(user)[0].id;
+      this.product.getCartList(userId);
+      this.product.cartLength.subscribe((result)=> {
+      let item = result.filter((item:product)=> productId?.toString() === item.productId?.toString())
+      if (item.length) {
+        this.removeCart = true;
+      }
+      })
+    }
+    
   }
 
   handleQuantity(val: string) {
@@ -48,11 +61,29 @@ export class ProductDetailsComponent implements OnInit {
       if (!localStorage.getItem('user')) {
         this.product.localAddToCart(this.productData)
         this.removeCart = true;
+      } else {
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user)[0].id;
+        let productId = this.productData.id;
+
+        let cartData: cart = {
+          ...this.productData,
+          userId,
+          productId
+        }
+        delete cartData.id;
+
+        this.product.addToCart(cartData).subscribe((result) => {
+          if (result) {
+            this.product.getCartList(userId);
+            this.removeCart = true;
+          }
+        })
       }
     }
   }
-  
-  removeToCart(id:number){
+
+  removeToCart(id: number) {
     this.product.localRemoveToCart(id);
     this.removeCart = false;
   }
