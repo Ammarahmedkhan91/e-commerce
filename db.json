@@ -36,7 +36,7 @@
     },
     {
       "name": "IPhone 14 Pro Max",
-      "price": "25,000",
+      "price": "215,000",
       "category": "Mobile",
       "color": "Gray",
       "description": "Apple Product",
@@ -91,16 +91,16 @@
   ],
   "cart": [
     {
-      "name": "OPPO A16e",
-      "price": "43,199",
-      "category": "Mobile",
-      "color": "Black",
-      "description": "Oppo Product",
-      "image": "https://www.pakmobizone.pk/wp-content/uploads/2022/03/Oppo-A16e-Midnight-Black-3.jpg",
-      "quantity": 1,
+      "name": "Audionic Airbud 5",
+      "price": "3,599",
+      "category": "Airbud",
+      "color": "white",
+      "description": "Buy Best Wireless Earbuds in Pakistan Audionic Airbud 400 Playtime: 5 hours",
+      "image": "https://images.priceoye.pk/audionic-airbud-5-pakistan-priceoye-ssmy3.jpg",
+      "quantity": 2,
       "userId": 1,
-      "productId": 1,
-      "id": 1
+      "productId": 4,
+      "id": 2
     }
   ]
 }

@@ -30,7 +30,7 @@
         </form>
     </div>
     <div class="login" *ngIf="showLogin">
-        <h3>User Login</h3>
+        <h3>Seller Login</h3>
         <p class="error-p">{{authError}}</p>
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" class="common-form" autocomplete="off">
             <input class="form-input" type="text" placeholder="Enter Email" name="email" #email="ngModel" ngModel pattern="^[A-Za-z]{3,}\d+@[A-Za-z]{4,}\.[A-Za-z]{2,}$" required>

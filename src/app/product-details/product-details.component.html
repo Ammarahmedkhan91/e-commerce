@@ -13,8 +13,8 @@
                 <p [style.backgroundColor]="productData.color" class="product-color"><p>
                 <p><b>Category:</b> {{productData.category}}</p>
                 <p class="product-description"><b>Description:</b> {{productData.description}}</p>
-                <button class="form-btn product-btn">Buy Now</button>
-                <button class="form-btn product-btn" (click)="addToCart()" *ngIf="!removeCart">Add to cart</button>
+                <button class="form-btn product-btn buy">Buy Now</button>
+                <button class="form-btn product-btn cart" (click)="addToCart()" *ngIf="!removeCart">Add to cart</button>
                 <button class="form-btn product-btn remove" (click)="removeToCart(productData.id)" *ngIf="removeCart">Remove to cart</button>
                 <div class="quantity-group">
                     <button (click)="handleQuantity('min')">-</button>
