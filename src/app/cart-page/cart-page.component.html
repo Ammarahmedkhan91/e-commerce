@@ -1,20 +1,22 @@
 <div class="container">
     <h1>Cart Page</h1>
     <div class="row">
-        
-        <div class="col-sm-8">
-                <div class="details">
-                    <ul *ngFor="let cart of cartData">
-                        <li><img src="{{cart.image}}" alt=""></li>
+        <div class="col-lg-8">
+                <div class="details" *ngFor="let cart of cartData">
+                    <div class="image">
+                        <img src="{{cart.image}}" alt="">
+                    </div>
+                    <ul>
                         <li><p>Name : {{cart.name}}</p></li>
                         <li><p>Price : {{cart.price}}</p></li>
                         <li><p>Quantity : {{cart.quantity}}</p></li>
-                        <li><button class="form-btn remove-cart">Remove to cart</button></li>
+                        <div class="button">
+                            <button class="remove">Remove</button>
+                        </div>
                     </ul>
             </div>
-        </div>
-            
-        <div class="col-sm-4">
+        </div>         
+        <div class="col-lg-4">
             <div class="summary">
                 <h3>Summary</h3>
                 <ul>

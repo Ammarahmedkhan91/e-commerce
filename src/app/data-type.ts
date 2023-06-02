@@ -1,16 +1,17 @@
-export interface SignUp{
+export interface signUp{
     fName:string,
     lName:string,
     password:string,
     email:string
 }
 
-export interface Login{
+export interface login{
     email:string,
     password:string
 }
 
 export interface product{
+    id:number,
     name:string,
     price:number,
     color:string,
@@ -18,11 +19,11 @@ export interface product{
     description:string,
     image:string,
     quantity: undefined | number,
-    id:number,
     productId:undefined | number
 }
 
 export interface cart{
+    id:number | undefined,
     name:string,
     price:number,
     color:string,
@@ -30,7 +31,6 @@ export interface cart{
     description:string,
     image:string,
     quantity: undefined | number,
-    id:number | undefined,
     userId:number,
     productId:number
 }
@@ -41,4 +41,13 @@ export interface summary {
     tax: number,
     delivery: number,
     total: number
+}
+
+export interface order {
+    id: number | undefined,
+    email: string,
+    address: string,
+    contact: string,
+    totalPrice: number,
+    userId: number,
 }

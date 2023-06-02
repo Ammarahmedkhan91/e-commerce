@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Login, SignUp, cart, product } from '../data-type';
+import { login, signUp, cart, product } from '../data-type';
 import { UserService } from '../services/user.service';
 import { ProductService } from '../services/product.service';
 
@@ -19,13 +19,13 @@ export class UserAuthComponent {
     this.user.reloadUser()
   }
 
-  signUp(data: SignUp): void {
+  signUp(data: signUp): void {
     this.user.userSignUp(data)
   }
 
-  login(data: Login): void {
-    this.user.userLogin(data)
-    this.user.isLoginError.subscribe((isError) => {
+  login(data: login): void {
+    this.user.userlogin(data)
+    this.user.isloginError.subscribe((isError) => {
       if (isError) {
         this.authError = "Email or password isn't correct";
       }

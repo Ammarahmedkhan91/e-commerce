@@ -1,1 +1,27 @@
-<p>checkout works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <div class="checkout">
+                <form class="common-form" #orderDat="ngForm" (ngSubmit)="orderNow(orderDat.value)" autocomplete="off">
+                    <h3>Shipping Address</h3>
+                    <p class="message-p">{{orderMsg}}</p>
+                    <input class="form-input" type="text" name="email" placeholder="Enter Email" #email="ngModel" ngModel pattern="^[A-Za-z]{3,}\d+@[A-Za-z]{4,}\.[A-Za-z]{2,}$" required>
+                    <div *ngIf="email.touched && email.invalid">
+                        <p class="invalid-input" *ngIf="email.errors && email.errors['required']">Email is required</p>
+                        <p class="invalid-input" *ngIf="email.errors && email.errors['pattern']">Please Enter Valid Email Address</p>
+                    </div>
+                    <input class="form-input" type="text" name="address" #address="ngModel" placeholder="Enter Address" ngModel required>
+                    <div *ngIf="address.touched && address.invalid">
+                        <p class="invalid-input" *ngIf="address.errors && address.errors['required']">Enter Address</p>
+                    </div>
+                    <input class="form-input" type="text" name="contact" #contact="ngModel" placeholder="Enter Phone" ngModel>
+                    <button class="form-btn" [disabled]="orderDat.invalid">Order Now</button>
+                </form>
+                <div class="checkout-amount">
+                    <p>Total Amount : <b>{{totalPrice}}</b></p>
+                    <p>Payment Method : Cash on delivery</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

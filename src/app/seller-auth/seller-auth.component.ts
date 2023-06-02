@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { SellerService } from '../services/seller.service';
-import { Login, SignUp } from '../data-type';
+import { login, signUp } from '../data-type';
 
 @Component({
   selector: 'app-seller-auth',
-  templateUrl: './seller-auth.component.html',
+  templateUrl:'./seller-auth.component.html',
   styleUrls: ['./seller-auth.component.css']
 })
 export class SellerAuthComponent {
@@ -18,11 +18,11 @@ export class SellerAuthComponent {
     this.seller.reloadSeller()
   }
   
-  signUp(data:SignUp):void{
+  signUp(data:signUp):void{
     this.seller.sellerSignUp(data)
   }
   
-  login(data:Login):void{
+  login(data:login):void{
     this.seller.sellerLogin(data)
     this.seller.isLoginError.subscribe((isError)=>{
       if (isError) {
@@ -35,7 +35,7 @@ export class SellerAuthComponent {
     this.showLogin = true;
   }
 
-  openSignupForm(){
+  opensignUpForm(){
     this.authError = "";
     this.showLogin = false;
   }

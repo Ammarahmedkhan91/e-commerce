@@ -32,15 +32,14 @@ export class CartPageComponent implements OnInit {
         }
       })
       this.summary.price = Math.floor(price);
-      this.summary.discount = Math.floor(price/500);
-      this.summary.tax = Math.floor(price/50);
+      this.summary.discount = Math.floor(price / 500);
+      this.summary.tax = Math.floor(price / 50);
       this.summary.delivery = 100;
       this.summary.total = this.summary.price - this.summary.discount + this.summary.tax + this.summary.delivery;
     });
   }
 
-  checkout(){
+  checkout() {
     this.router.navigate(['checkout']);
   }
-
 }

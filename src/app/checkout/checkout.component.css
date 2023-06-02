@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 72px);
+}
+
+h3{
+    font-weight: 600;
+    color: #48afff;
+    text-align: center;
+}
+
+.checkout {
+    display: flex;
+    align-items: center;
+}
+
+.message-p {
+    text-align: center;
+}
+
+.checkout-amount{
+    margin-right: 100px;
+}
+
+.checkout-amount p {
+    font-size: 20px;
+}
+
+.form-input {
+    height: 42px;
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        height: calc(100vh - 149px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .checkout {
+        flex-direction: column;
+    }
+
+    h3{
+        margin: 0;
+    }
+
+    .checkout-amount {
+        text-align: center;
+        margin: auto;
+        margin-top: 16px;
+    }
+}

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="order-page">
+        <h1>My Orders</h1>
+    <table class="table">
+        <thead>
+          <tr>
+              <th scope="col">Order</th>
+              <th scope="col">#ID</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="center" *ngFor="let order of orderData">
+            <td><img src="http://clipartmax.com/png/middle/210-2106541_track-my-order-beach-volleyball.png" alt=""></td>
+            <th scope="row">{{order.id}}</th>
+            <td>{{order.totalPrice}}</td>
+            <td>Process</td>
+            <td><button class="remove" (click)="cancelOrder(order.id)">Cancel Order</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

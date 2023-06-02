@@ -1,29 +1,36 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family: "Open Sans","Noto Nastaliq Urdu Draft","Roboto","Helvetica Neue","Helvetica","Arial",sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: "Open Sans", "Noto Nastaliq Urdu Draft", "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     background: #f1f3f6;
 }
 
 .common-form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    max-width: 300px;
     margin: auto;
 }
 
-.form-input, .form-input textarea{
-    height: 34px;
-    margin-bottom: 16px;
+.form-input,
+.form-input textarea {
     padding-left: 10px;
     border: 1px solid #c0c0c0;
     color: #525252;
     border-radius: 8px;
     height: 50px;
+    margin: 0 8px;
+    margin-bottom: 16px;
 }
 
 .form-input::placeholder {
@@ -39,7 +46,19 @@ body {
     cursor: pointer;
     padding: 0 8px;
     text-align: center;
-    margin-bottom: 8px;
+    margin: 0 8px;
+}
+
+.remove {
+    height: 40px;
+    color: white;
+    background-color: #d11a2a;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0 8px;
+    text-align: center;
+    margin: 0 8px;
 }
 
 .signup,
@@ -50,8 +69,7 @@ body {
 .signup h3,
 .login h3 {
     font-weight: 600;
-    margin-top: 50px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     color: #48afff;
 }
 
@@ -75,9 +93,14 @@ button:disabled {
 }
 
 .align-left {
-    margin-top: 20px;
-    font-size: 14px;
     text-align: left;
+    font-size: 14px;
+    margin: 0 12px;
+    margin-top: 20px;
+}
+
+.invalid-input {
+    margin-left: 10px;
 }
 
 .error-p {
@@ -92,11 +115,13 @@ button:disabled {
     background: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 10px;
     margin-top: 24px;
+    margin-bottom: 24px;
     border-radius: 8px;
 }
 
-.picsum-img-wrapper img{
-    height: 82vh;
+.picsum-img-wrapper img {
+    /* height: 82vh; */
+    height: calc(100vh - 120px);
     width: 100%;
     object-fit: contain;
 }
@@ -108,7 +133,7 @@ button:disabled {
     height: 12vh;
 }
 
-.carousel-indicators{
+.carousel-indicators {
     bottom: 4px;
 }
 
@@ -117,8 +142,8 @@ button:disabled {
     background-color: black;
 }
 
-@media screen and (max-width: 991px) {
-    .picsum-img-wrapper img{
-        height: 75vh;
+@media screen and (max-width: 991px ) {
+    .picsum-img-wrapper img {
+        height: calc(100vh - 197px);
     }
 }

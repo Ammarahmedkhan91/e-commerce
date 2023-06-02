@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
-import { SignUp, Login } from '../data-type';
+import { signUp, login } from '../data-type';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class SellerService {
   isSellerLoggedIn = new BehaviorSubject<boolean>(false)
   isLoginError = new EventEmitter<boolean>(false)
 
-  sellerSignUp(data: SignUp) {
+  sellerSignUp(data: signUp) {
       return this.http.post('http://localhost:3333/sellers', data, { observe: 'response' }).subscribe((result) => {
         if (result) {
           this.isSellerLoggedIn.next(true)
@@ -31,7 +31,7 @@ export class SellerService {
     }
   }
 
-  sellerLogin(data: Login) {
+  sellerLogin(data: login) {
     return this.http.get(`http://localhost:3333/sellers?email=${data.email}&password=${data.password}`, { observe: 'response' }).subscribe((result: any) => {
 
       if (result && result.body && result.body.length) {

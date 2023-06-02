@@ -89,17 +89,22 @@
       "id": 7
     }
   ],
-  "cart": [
+  "cart": [],
+  "orders": [
     {
-      "name": "Audionic Airbud 5",
-      "price": "3,599",
-      "category": "Airbud",
-      "color": "white",
-      "description": "Buy Best Wireless Earbuds in Pakistan Audionic Airbud 400 Playtime: 5 hours",
-      "image": "https://images.priceoye.pk/audionic-airbud-5-pakistan-priceoye-ssmy3.jpg",
-      "quantity": 2,
+      "email": "ammarkhan1@gmail.com",
+      "address": "House No #G-23",
+      "contact": "03468537448",
+      "totalPrice": 83167,
       "userId": 1,
-      "productId": 4,
+      "id": 1
+    },
+    {
+      "email": "ammarkhan1@gmail.com",
+      "address": "House No #G-23",
+      "contact": "03468537448",
+      "totalPrice": 44076,
+      "userId": 1,
       "id": 2
     }
   ]
