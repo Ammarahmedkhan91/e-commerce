@@ -42,7 +42,7 @@ export class CartPageComponent implements OnInit {
       this.summary.total = this.summary.price - this.summary.discount + this.summary.tax + this.summary.delivery;
 
       if (!this.cartData.length) {
-        this.router.navigate(['home'])
+        this.router.navigate(['/'])
       }
 
     });
