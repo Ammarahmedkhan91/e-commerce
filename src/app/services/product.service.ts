@@ -122,7 +122,7 @@ export class ProductService {
           this.router.navigate(['my-orders'])
         }
         else {
-          this.router.navigate(['home'])
+          this.router.navigate(['/'])
         }
       })
 
