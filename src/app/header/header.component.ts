@@ -22,10 +22,17 @@ export class HeaderComponent implements OnInit {
   bar = faBars;
   time = faTimes;
   cartItems = 0;
+  orderLength = 0
 
   constructor(private router: Router, private product: ProductService) { }
 
   ngOnInit(): void {
+
+    this.product.getOrderLength()
+    this.product.orderLength.subscribe((items) => {
+      this.orderLength = items.length;
+    })
+
     this.router.events.subscribe((val: any) => {
       if (val.url) {
         if (localStorage.getItem('seller') && val.url.includes('seller')) {
@@ -39,7 +46,7 @@ export class HeaderComponent implements OnInit {
           this.userName = userData.fName;
           this.menuType = 'user';
           this.product.getCartList(userData.id)
-        } 
+        }
         else {
           this.menuType = 'default';
         }
@@ -53,6 +60,7 @@ export class HeaderComponent implements OnInit {
     this.product.cartLength.subscribe((items) => {
       this.cartItems = items.length;
     })
+
   }
 
   sellerLogOut() {
@@ -103,6 +111,12 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate([`details/${id}`]);
       });
+    }
+  }
+
+  navigateToOrderPage() {
+    if (this.orderLength > 0) {
+      this.product.orderList()
     }
   }
 

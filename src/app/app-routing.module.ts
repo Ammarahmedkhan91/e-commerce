@@ -17,11 +17,6 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full' 
-  },
-  {
-    path: 'home',
     component: HomeComponent
   },
   {

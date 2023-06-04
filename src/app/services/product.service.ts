@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { cart, order, product } from '../data-type';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,28 @@ import { cart, order, product } from '../data-type';
 export class ProductService {
 
   cartLength = new EventEmitter<product[] | []>();
+  orderLength = new EventEmitter<order[] | []>();
+  orderData = new EventEmitter<order[] | undefined>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  getOrderLength() {
+    let user = localStorage.getItem('user');
+    let userData = user && JSON.parse(user)[0];
+    return userData && this.http.get<order[]>(`http://localhost:3333/orders?userId=${userData.id}`)
+      .subscribe((result) => {
+        if (result.length) {
+          this.orderLength.emit(result)
+        }
+      })
+  }
 
   addProduct(data: product) {
     return this.http.post('http://localhost:3333/products', data);
   }
 
-  productList() {
-    return this.http.get<product[]>('http://localhost:3333/products');
+  productList(id: number) {
+    return this.http.get<product[]>(`http://localhost:3333/products?sellerId=${id}`);
     // return this.http.get<product[]>('http://192.168.53.105:8080/api/products');
   }
 
@@ -101,6 +115,17 @@ export class ProductService {
     let user = localStorage.getItem('user');
     let userData = user && JSON.parse(user)[0];
     return this.http.get<order[]>(`http://localhost:3333/orders?userId=${userData.id}`)
+      .subscribe((result) => {
+        this.orderLength.emit(result)
+        if (result.length) {
+          this.orderData.emit(result);
+          this.router.navigate(['my-orders'])
+        }
+        else {
+          this.router.navigate(['home'])
+        }
+      })
+
   }
 
   deleteCartItems(cartId: number) {
@@ -112,7 +137,7 @@ export class ProductService {
       });
   }
 
-  cancelOrder(id: number){
+  cancelOrder(id: number) {
     return this.http.delete(`http://localhost:3333/orders/${id}`)
   }
 

@@ -1,7 +1,7 @@
 <div class="add-product">
     <h1>Add Product</h1>
     <p class="message-p">{{addProductMessage}}</p>
-    <form #productForm="ngForm" class="common-form" (ngSubmit)="submit(productForm.value)">
+    <form #productForm="ngForm" class="common-form" (ngSubmit)="submit(productForm.value)" autocomplete="off">
         <input class="form-input" type="text" placeholder="Product Name" name="name" ngModel>
         <input class="form-input" type="text" placeholder="Product Price" name="price" ngModel>
         <input class="form-input" type="text" placeholder="Product Category" name="category" ngModel>

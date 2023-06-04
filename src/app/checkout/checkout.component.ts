@@ -43,12 +43,6 @@ export class CheckoutComponent implements OnInit {
         id: undefined
       }
 
-      this.cartData?.forEach((item) => {
-        setTimeout(() => {
-          item.id && this.product.deleteCartItems(item.id)
-        }, 500);
-      })
-
       this.product.orderNow(orderData).subscribe((result) => {
         if (result) {
           this.orderMsg = "Your order has been placed"
@@ -59,6 +53,12 @@ export class CheckoutComponent implements OnInit {
         }
       })
 
+      this.cartData?.forEach((item) => {
+        setTimeout(() => {
+          item.id && this.product.deleteCartItems(item.id)
+        }, 500);
+      })
+      
     }
   }
 }

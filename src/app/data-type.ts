@@ -18,6 +18,7 @@ export interface product{
     category:string,
     description:string,
     image:string,
+    sellerId: number,
     quantity: undefined | number,
     productId:undefined | number
 }

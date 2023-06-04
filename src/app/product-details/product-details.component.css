@@ -73,6 +73,7 @@
 
 .buy{
     background-color: #42b72a;
+    margin-left: inherit;
 }
 
 .cart {

@@ -142,8 +142,12 @@ input::placeholder {
     font-size: 14px;
 }
 
-.user-name, .seller-name{
+.user-name, .seller-name, .cart, .orderFalse{
     cursor: context-menu;
+}
+
+.orderTrue{
+    cursor: pointer;
 }
 
 .logOut {

@@ -120,7 +120,6 @@ button:disabled {
 }
 
 .picsum-img-wrapper img {
-    /* height: 82vh; */
     height: calc(100vh - 120px);
     width: 100%;
     object-fit: contain;

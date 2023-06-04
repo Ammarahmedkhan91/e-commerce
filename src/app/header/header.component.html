@@ -1,8 +1,9 @@
 <input type="checkbox" id="check">
 <nav>
-    <div class="icon" routerLink="/home">E-Com</div>
-    <div class="search-box">
-        <input type="search" placeholder="Search..." #searchBar (keyup)="searchProducts(searchBar.value)" (blur)="hideSearchProducts()">
+    <div class="icon" routerLink="/">E-Com</div>
+
+    <div class="search-box" *ngIf="menuType !== 'seller' ">
+        <input type="search" placeholder="Search..." #searchBar  (keydown.enter)="submitSearch(searchBar.value)"  (keyup)="searchProducts(searchBar.value)" (blur)="hideSearchProducts()">
         <button class="searchIcon" (click)="submitSearch(searchBar.value)"><fa-icon [icon]="searchIcon"></fa-icon></button>
 
         <ul class="suggested-result" *ngIf="searchResult">
@@ -20,18 +21,20 @@
         <ul *ngSwitchCase="'default'">
             <li><a routerLink="/user-auth">Login</a></li>
             <li><a routerLink="/seller-auth">Sellar</a></li>
-            <li><a routerLink="#">Cart ({{cartItems}})</a></li>
+            <li><a routerLink="user-auth">Cart ({{cartItems}})</a></li>
         </ul>
         <ul *ngSwitchCase="'user'">
             <li><a class="user-name">{{userName | titlecase}}</a></li>
-            <li><a routerLink="my-orders">My Orders</a></li>
-            <li><a routerLink="cart-page">Cart ({{cartItems}})</a></li>
+            <li><a [class]="orderLength === 0 ? 'orderFalse' : 'orderTrue'" (click)="navigateToOrderPage()">My Orders ({{orderLength}})</a></li>
+            <li><a [class]="cartItems === 0 ? 'cart' : null" [routerLink]="cartItems > 0 ? 'cart-page' : null">Cart ({{cartItems}})</a></li>
+            <li><a routerLink="seller-auth">Seller</a></li>
             <li><a class="logOut" (click)="userLogOut()">Logout</a></li>
         </ul>
         <ul *ngSwitchCase="'seller'">
+            <li><a class="seller-name">{{sellerName | titlecase}}</a></li>
             <li><a routerLink="/seller-add-product">Add Product</a></li>
             <li><a routerLink="/seller-home">Product List</a></li>
-            <li><a class="seller-name">{{sellerName | titlecase}}</a></li>
+            <li><a routerLink="user-auth">User</a></li>
             <li><a class="logOut" (click)="sellerLogOut()">Logout</a></li>
         </ul>
     </div>

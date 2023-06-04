@@ -3,14 +3,14 @@
     {
       "fName": "Ammar",
       "lName": "Khan",
-      "email": "ammarkhan1@gmail.com",
+      "email": "ammarkhan427@yahoo.com",
       "password": "Vs_code1",
       "id": 1
     },
     {
       "fName": "Nasir",
       "lName": "Khan",
-      "email": "nasirkhan1@gmail.com",
+      "email": "nasirfareed15@gmail.com",
       "password": "Vs_code1",
       "id": 2
     }
@@ -22,6 +22,20 @@
       "email": "harrypotter1@gmail.com",
       "password": "Vs_code1",
       "id": 1
+    },
+    {
+      "fName": "Sadia",
+      "lName": "Fatima",
+      "email": "sadiafatima1@gmail.com",
+      "password": "Vs_code1",
+      "id": 2
+    },
+    {
+      "fName": "Ammar",
+      "lName": "Khan",
+      "email": "ammarkhan1@gmail.com",
+      "password": "Vs_code1",
+      "id": 3
     }
   ],
   "products": [
@@ -32,6 +46,7 @@
       "color": "Black",
       "description": "Oppo Product",
       "image": "https://www.pakmobizone.pk/wp-content/uploads/2022/03/Oppo-A16e-Midnight-Black-3.jpg",
+      "sellerId": 1,
       "id": 1
     },
     {
@@ -41,6 +56,7 @@
       "color": "Gray",
       "description": "Apple Product",
       "image": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-pro-max-1.jpg",
+      "sellerId": 1,
       "id": 2
     },
     {
@@ -50,7 +66,8 @@
       "color": "Black",
       "description": "43\" T5300 Full HD Flat Smart TV",
       "image": "https://images.samsung.com/is/image/samsung/pk-fhd-t5300-ua43t5300auxmm-frontblack-265965080?$650_519_PNG$",
-      "id": 3
+      "id": 3,
+      "sellerId": 1
     },
     {
       "name": "Audionic Airbud 5",
@@ -59,6 +76,7 @@
       "color": "white",
       "description": "Buy Best Wireless Earbuds in Pakistan Audionic Airbud 400 Playtime: 5 hours",
       "image": "https://images.priceoye.pk/audionic-airbud-5-pakistan-priceoye-ssmy3.jpg",
+      "sellerId": 1,
       "id": 4
     },
     {
@@ -68,6 +86,7 @@
       "color": "Blue",
       "description": "Tecno spark 5 pro is a very nice phone.The 4x1.8 GHz CPU makes the device fast in operation without hanging",
       "image": "https://www.mac.net.pk/wp-content/uploads/2020/06/3-2.png",
+      "sellerId": 2,
       "id": 5
     },
     {
@@ -77,6 +96,7 @@
       "color": "Silver",
       "description": "HP 15 DA0053wm Core i5 8th Gen | 4GB Ram 1TB HDD + 16GB Optane | 15.6″ HD Touch | Win10 | Touch Screen",
       "image": "https://laptopmart.pk/wp-content/uploads/2019/11/HP-15-DA0053wm-core-i5-8th-gen-price.jpg",
+      "sellerId": 2,
       "id": 6
     },
     {
@@ -86,26 +106,20 @@
       "color": "Silver",
       "description": "This is a Samsung product",
       "image": "https://images.samsung.com/is/image/samsung/p6pim/nl/2208/gallery/nl-galaxy-z-fold4-f936-sm-f936bzkbeub-thumb-533132151?$264_264_PNG$",
+      "sellerId": 2,
       "id": 7
+    },
+    {
+      "name": "Car",
+      "price": "800",
+      "category": "toy",
+      "color": "black",
+      "description": "Best remote control car ",
+      "image": "https://atlas-content-cdn.pixelsquid.com/assets/925241893619504987/jpeg-600/F03.jpg?modifiedAt=1",
+      "id": 8,
+      "sellerId": 3
     }
   ],
   "cart": [],
-  "orders": [
-    {
-      "email": "ammarkhan1@gmail.com",
-      "address": "House No #G-23",
-      "contact": "03468537448",
-      "totalPrice": 83167,
-      "userId": 1,
-      "id": 1
-    },
-    {
-      "email": "ammarkhan1@gmail.com",
-      "address": "House No #G-23",
-      "contact": "03468537448",
-      "totalPrice": 44076,
-      "userId": 1,
-      "id": 2
-    }
-  ]
+  "orders": []
 }

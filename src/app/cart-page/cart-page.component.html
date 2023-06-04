@@ -11,7 +11,7 @@
                         <li><p>Price : {{cart.price}}</p></li>
                         <li><p>Quantity : {{cart.quantity}}</p></li>
                         <div class="button">
-                            <button class="remove">Remove</button>
+                            <button class="remove" (click)="removeToCart(cart.id)">Remove</button>
                         </div>
                     </ul>
             </div>
