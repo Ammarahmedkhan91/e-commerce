@@ -9,19 +9,21 @@
 			</div>
 		</ng-template>
 	</ngb-carousel>
-</div>
-<div class="container" *ngIf="trendyProducts">
-	<div class="product-list-wrapper">
+	<div class="product-list-wrapper" *ngIf="trendyProducts">
 		<h3>Trendy Products</h3>
 		<div class="row">
-			<div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let items of trendyProducts">
+			<div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let items of trendyProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
 				<div class="product-items">
 					<div class="product-image">
 						<a routerLink="/details/{{items.id}}"><img src="{{items.image}}" alt=""></a>
 					</div>
 					<div class="product-details">
-						<div class="product-name"><p>{{items.name}}</p></div>
-						<div class="product-price"><p>Rs. {{items.price}}</p></div>
+						<div class="product-name">
+							<p>{{items.name}}</p>
+						</div>
+						<div class="product-price">
+							<p>Rs. {{items.price}}</p>
+						</div>
 					</div>
 					<div class="product-footer">
 						<a routerLink="/details/{{items.id}}">Details</a>
@@ -31,4 +33,9 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="pagination" *ngIf="trendyProducts">
+		<pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
+	</div>
+
 </div>

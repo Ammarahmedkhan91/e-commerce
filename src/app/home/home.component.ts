@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit{
 
   popularProducts: undefined | product[];
   trendyProducts: undefined | product[];
+  page:number = 1;
+  itemsPerPage: number = 4;
 
   constructor(private productService: ProductService) {}
 
