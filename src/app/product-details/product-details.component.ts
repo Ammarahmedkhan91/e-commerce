@@ -49,29 +49,30 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
-  buyNow(){
+  buyProduct() {
+
     if (this.productData) {
       this.productData.quantity = this.productQuantity;
-      
-        let user = localStorage.getItem('user');
-        let userId = user && JSON.parse(user)[0].id;
-        let productId = this.productData.id;
+      let user = localStorage.getItem('user');
+      let userId = user && JSON.parse(user)[0].id;
+      let productId = this.productData.id;
 
-        let cartData: cart = {
-          ...this.productData,
-          userId,
-          productId
+      let cartData: cart = {
+        ...this.productData,
+        userId,
+        productId
+      }
+      delete cartData.id;
+      this.product.addToCart(cartData).subscribe((result) => {
+        if (result) {
+          this.product.getCartList(userId);
+          this.removeCart = true;
         }
-        delete cartData.id;
-        this.product.addToCart(cartData).subscribe((result) => {
-          if (result) {
-            this.product.getCartList(userId);
-            this.removeCart = true;
-          }
-        })
-        this.router.navigate(['cart-page'])
-      
+      })
+      this.router.navigate(['cart-page'])
+
     }
+
   }
 
   addToCart() {
@@ -107,17 +108,17 @@ export class ProductDetailsComponent implements OnInit {
       this.product.localRemoveToCart(id);
     } else {
       this.cartData && this.product.removeToCart(this.cartData.id)
-      .subscribe((result) => {
-        if (result) {
-          let user = localStorage.getItem('user');
-          let userId = user && JSON.parse(user)[0].id;
-          this.product.getCartList(userId);
-          this.removeCart = false;
-        }
-      })
+        .subscribe((result) => {
+          if (result) {
+            let user = localStorage.getItem('user');
+            let userId = user && JSON.parse(user)[0].id;
+            this.product.getCartList(userId);
+            this.removeCart = false;
+          }
+        })
     }
   }
-  
+
   handleQuantity(val: string) {
     if (this.productQuantity < 20 && val === 'plus') {
       this.productQuantity += 1;

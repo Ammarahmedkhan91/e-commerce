@@ -24,18 +24,11 @@
       "id": 1
     },
     {
-      "fName": "Sadia",
-      "lName": "Fatima",
-      "email": "sadiafatima1@gmail.com",
-      "password": "Vs_code1",
-      "id": 2
-    },
-    {
       "fName": "Ammar",
       "lName": "Khan",
       "email": "ammarkhan1@gmail.com",
       "password": "Vs_code1",
-      "id": 3
+      "id": 2
     }
   ],
   "products": [
@@ -117,7 +110,7 @@
       "description": "Best remote control car ",
       "image": "https://atlas-content-cdn.pixelsquid.com/assets/925241893619504987/jpeg-600/F03.jpg?modifiedAt=1",
       "id": 8,
-      "sellerId": 3
+      "sellerId": 2
     }
   ],
   "cart": [],
