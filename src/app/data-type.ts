@@ -32,8 +32,8 @@ export interface cart{
     description:string,
     image:string,
     quantity: undefined | number,
-    userId:number,
     productId:number
+    userId:number | undefined,
 }
 
 export interface summary {
@@ -50,5 +50,5 @@ export interface order {
     address: string,
     contact: string,
     totalPrice: number,
-    userId: number,
+    userId: number | undefined
 }

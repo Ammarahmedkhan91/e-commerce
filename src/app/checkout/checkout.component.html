@@ -1,7 +1,20 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md">
-            <div class="checkout">
+    <div class="row checkout" *ngIf="cartData">
+        <div class="col-md-4">
+            <div class="summary">
+                <h3>Summary</h3>
+            <ul>
+                <li>Amount <p>{{summary.price}}</p></li>
+                <li>Tax <p>{{summary.tax}}</p></li>
+                <li>Discount <p>{{summary.discount}}</p></li>
+                <li>Delivery <p>{{summary.delivery}}</p></li>
+                <li>Total <p>{{summary.total}}</p></li>
+                <li>Payment Method <p>C.O.D</p></li>
+            </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form">
                 <form class="common-form" #orderDat="ngForm" (ngSubmit)="orderNow(orderDat.value)" autocomplete="off">
                     <h3>Shipping Address</h3>
                     <p class="message-p">{{orderMsg}}</p>
@@ -17,10 +30,6 @@
                     <input class="form-input" type="text" name="contact" #contact="ngModel" placeholder="Enter Phone" ngModel>
                     <button class="form-btn" [disabled]="orderDat.invalid">Order Now</button>
                 </form>
-                <div class="checkout-amount">
-                    <p>Total Amount : <b>{{totalPrice}}</b></p>
-                    <p>Payment Method : Cash on delivery</p>
-                </div>
             </div>
         </div>
     </div>

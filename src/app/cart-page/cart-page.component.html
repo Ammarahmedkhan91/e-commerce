@@ -1,34 +1,21 @@
 <div class="container">
-    <h1>Cart Page</h1>
-    <div class="row">
-        <div class="col-lg-8">
-                <div class="details" *ngFor="let cart of cartData">
-                    <div class="image">
-                        <img src="{{cart.image}}" alt="">
-                    </div>
-                    <ul>
-                        <li><p>Name : {{cart.name}}</p></li>
-                        <li><p>Price : {{cart.price}}</p></li>
-                        <li><p>Quantity : {{cart.quantity}}</p></li>
-                        <div class="button">
-                            <button class="remove" (click)="removeToCart(cart.id)">Remove</button>
-                        </div>
-                    </ul>
-            </div>
-        </div>         
-        <div class="col-lg-4" *ngIf="cartData">
-            <div class="summary">
-                <h3>Summary</h3>
-                <ul>
-                    <li><span>Amount</span><span>PKR.{{summary.price}}</span></li>
-                    <li><span>Tax</span><span>PKR.{{summary.tax}}</span></li>
-                    <li><span>Delivery</span><span>PKR.{{summary.delivery}}</span></li>
-                    <li><span>Discount</span><span>PKR.{{summary.discount}}</span></li>
-                    <li><span>Total</span><span>PKR.{{summary.total}}</span></li>
-                    <button class="form-btn" (click)="checkout()">Checkout</button>
-                </ul>
-            </div>
+    <h1 *ngIf="cartData">Cart Page</h1>
+    <div class="row cart" *ngFor="let cart of cartData">
+        <div class="col-sm-4 image">
+            <img src="{{cart.image}}" alt="">
         </div>
-
+        <div class="col-sm-6 details">
+            <ul>
+                <li><p>Name : {{cart.name}}</p></li>
+                <li><p>Price : {{cart.price}}</p></li>
+                <li><p>Quantity : {{cart.quantity}}</p></li>
+            </ul>
+        </div>
+        <div class="col-sm-2 btn-remove">
+            <button class="remove" (click)="removeToCart(cart.id)">Remove</button>
+        </div>
     </div>
-</div>
+        <div class="col-sm btn">
+            <button class="form-btn" *ngIf="cartData" (click)="checkout()">Checkout</button>
+        </div>
+</div> 

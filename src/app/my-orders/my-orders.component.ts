@@ -14,20 +14,40 @@ export class MyOrdersComponent implements OnInit {
   constructor(private product: ProductService) { }
 
   ngOnInit(): void {
-    this.getOrderList();
+    let user = localStorage.getItem('user')
+    if (user) {
+      this.getOrderList();
+    } else {
+      this.getLocalOrderList()
+    }
   }
 
-  getOrderList(){
+  getOrderList() {
     this.product.orderList();
     this.product.orderData.subscribe((result) => {
       this.orderData = result;
     });
   }
 
+  getLocalOrderList() {
+    this.product.localOrderList();
+    this.product.orderData.subscribe((result) => {
+      this.orderData = result;
+    });
+  }
+
   cancelOrder(id: number | undefined) {
-    id && this.product.cancelOrder(id).subscribe((res) => {
-      this.getOrderList();
-    })
+    let user = localStorage.getItem('user')
+    if (user) {
+      id && this.product.cancelOrder(id).subscribe(() => {
+        this.getOrderList();
+      })
+    } else {
+      id && this.product.cancelOrder(id).subscribe(() => {
+        this.getLocalOrderList();
+      })
+    }
+
   }
 
 }

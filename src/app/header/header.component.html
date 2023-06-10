@@ -19,9 +19,9 @@
 
     <div class="menu" [ngSwitch]="menuType">
         <ul *ngSwitchCase="'default'">
-            <li><a routerLink="/user-auth">Login</a></li>
-            <li><a routerLink="/seller-auth">Sellar</a></li>
-            <li><a routerLink="user-auth">Cart ({{cartItems}})</a></li>
+            <li><a routerLink="user-auth">Login</a></li>
+            <li><a routerLink="seller-auth">Sellar</a></li>
+            <li><a [class]="cartItems === 0 ? 'cart' : null" [routerLink]="cartItems > 0 ? 'cart-page' : null">Cart ({{cartItems}})</a></li>
         </ul>
         <ul *ngSwitchCase="'user'">
             <li><a class="user-name">{{userName | titlecase}}</a></li>

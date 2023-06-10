@@ -28,6 +28,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.product.cartLength.subscribe((items) => {
+      this.cartItems = items.length;
+    })
+
     this.product.getOrderLength()
     this.product.orderLength.subscribe((items) => {
       this.orderLength = items.length;
@@ -45,7 +49,7 @@ export class HeaderComponent implements OnInit {
           let userData = JSON.parse(this.user)[0] || JSON.parse(this.seller)
           this.userName = userData.fName;
           this.menuType = 'user';
-          this.product.getCartList(userData.id)
+          this.product.getCartItems(userData.id)
         }
         else {
           this.menuType = 'default';
@@ -57,9 +61,6 @@ export class HeaderComponent implements OnInit {
     if (cart) {
       this.cartItems = JSON.parse(cart).length;
     }
-    this.product.cartLength.subscribe((items) => {
-      this.cartItems = items.length;
-    })
 
   }
 

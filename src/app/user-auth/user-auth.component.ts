@@ -51,14 +51,14 @@ export class UserAuthComponent {
     if (cart) {
       let cartDataList: product[] = JSON.parse(cart);
       cartDataList.forEach((product: product, index) => {
-        
-      let cartData: cart = {
+
+        let cartData: cart = {
           ...product,
           productId: product.id,
           userId
         };
         delete cartData.id;
-        
+
         this.product.addToCart(cartData).subscribe((res) => {
           if (res) {
             console.log("Item stored in db")
@@ -70,10 +70,7 @@ export class UserAuthComponent {
 
       })
     }
-
-    setTimeout(()=> {
-      this.product.getCartList(userId)
-    }, 500)
+    this.product.getCartItems(userId);
 
   }
 }
