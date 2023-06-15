@@ -150,6 +150,10 @@ input::placeholder {
     cursor: pointer;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 .logOut {
     cursor: pointer;
 }

@@ -28,14 +28,39 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.product.cartLength.subscribe((items) => {
-      this.cartItems = items.length;
-    })
+    let user = localStorage.getItem('user');
 
-    this.product.getOrderLength()
-    this.product.orderLength.subscribe((items) => {
-      this.orderLength = items.length;
-    })
+    if (user) {
+
+      this.product.getUserOrderLength();
+      this.product.orderLength.subscribe((items) => {
+        this.orderLength = items.length;
+      });
+
+      this.product.getCartLength();
+      this.product.cartLength.subscribe((items) => {
+        this.cartItems = items.length;
+      });
+
+    } else {
+
+      let localCart = localStorage.getItem('localCart');
+      if (localCart) {
+        this.cartItems = JSON.parse(localCart).length;
+        this.product.localCartLength.subscribe((items) => {
+          this.cartItems = items.length;
+        });
+      }
+
+      let localOrder = localStorage.getItem('order');
+      if (localOrder) {
+        this.orderLength = JSON.parse(localOrder).length;
+        this.product.localOrderLength.subscribe((items) => {
+          this.orderLength = items.length;
+        });
+      }
+
+    }
 
     this.router.events.subscribe((val: any) => {
       if (val.url) {
@@ -55,12 +80,7 @@ export class HeaderComponent implements OnInit {
           this.menuType = 'default';
         }
       }
-    })
-
-    let cart = localStorage.getItem('localCart');
-    if (cart) {
-      this.cartItems = JSON.parse(cart).length;
-    }
+    });
 
   }
 
@@ -71,7 +91,8 @@ export class HeaderComponent implements OnInit {
   userLogOut() {
     localStorage.removeItem('user');
     this.router.navigate(['user-auth'])
-    this.product.cartLength.emit([])
+    this.product.cartLength.emit([]);
+    this.product.orderLength.emit([]);
   }
 
   searchProducts(value: string) {
@@ -116,9 +137,16 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToOrderPage() {
-    if (this.orderLength > 0) {
-      this.product.orderList()
+
+    let user = localStorage.getItem('user');
+    if (!user) {
+      this.router.navigate(['user-auth']);
+    } else {
+      if (this.orderLength > 0) {
+        this.router.navigate(['my-orders']);
+      }
     }
+    
   }
 
 }

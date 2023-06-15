@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { order } from '../data-type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-orders',
@@ -11,42 +12,38 @@ export class MyOrdersComponent implements OnInit {
 
   orderData: order[] | undefined;
 
-  constructor(private product: ProductService) { }
+  constructor(private product: ProductService, public router: Router) { }
 
   ngOnInit(): void {
     let user = localStorage.getItem('user')
     if (user) {
-      this.getOrderList();
-    } else {
-      this.getLocalOrderList()
+      this.userOrderList();
     }
   }
 
-  getOrderList() {
-    this.product.orderList();
-    this.product.orderData.subscribe((result) => {
-      this.orderData = result;
-    });
-  }
-
-  getLocalOrderList() {
-    this.product.localOrderList();
+  userOrderList() {
+    this.product.userOrderList();
     this.product.orderData.subscribe((result) => {
       this.orderData = result;
     });
   }
 
   cancelOrder(id: number | undefined) {
-    let user = localStorage.getItem('user')
-    if (user) {
-      id && this.product.cancelOrder(id).subscribe(() => {
-        this.getOrderList();
+
+    let user = localStorage.getItem('user');
+    let userId = user && JSON.parse(user)[0].id;
+
+    id && this.product.cancelOrder(id).subscribe((result) => {
+      this.product.getUserOrder(userId).subscribe((result) => {
+        if (result.length) {
+          this.orderData = result;
+          this.product.orderLength.emit(result)
+        } else {
+          this.router.navigate(['/']);
+          this.product.orderLength.emit([]);
+        }
       })
-    } else {
-      id && this.product.cancelOrder(id).subscribe(() => {
-        this.getLocalOrderList();
-      })
-    }
+    })
 
   }
 

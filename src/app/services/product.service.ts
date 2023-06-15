@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class ProductService {
 
+  localCartLength = new EventEmitter<product[] | []>();
+  localOrderLength = new EventEmitter<order[] | []>();
   cartLength = new EventEmitter<product[] | []>();
   orderLength = new EventEmitter<order[] | []>();
   orderData = new EventEmitter<order[] | undefined>();
@@ -53,6 +55,29 @@ export class ProductService {
     return this.http.post('http://localhost:3333/cart', cartData);
   }
 
+  localAddToCart(productData: product) {
+    let cartData = []
+    let localCart = localStorage.getItem('localCart');
+    if (!localCart) {
+      localStorage.setItem('localCart', JSON.stringify([productData]))
+    } else {
+      cartData = JSON.parse(localCart);
+      cartData.push(productData);
+      localStorage.setItem('localCart', JSON.stringify(cartData));
+    }
+    this.localCartLength.emit(cartData);
+  }
+
+  localRemoveToCart(productId: number) {
+    let localCart = localStorage.getItem('localCart');
+    if (localCart) {
+      let items: product[] = JSON.parse(localCart);
+      items = items.filter((item: product) => productId !== item.id);
+      this.localCartLength.emit(items);
+      localStorage.setItem('localCart', JSON.stringify(items));
+    }
+  }
+
   getCartItems(userId: number) {
     return this.http.get<product[]>(`http://localhost:3333/cart?userId=${userId}`,
       { observe: 'response' }).subscribe((res) => {
@@ -85,40 +110,6 @@ export class ProductService {
     return this.http.get<cart[]>(`http://localhost:3333/cart?userId=${userData.id}`);
   }
 
-  orderNow(data: order) {
-    return this.http.post('http://localhost:3333/orders', data)
-  }
-
-  orderList() {
-    let user = localStorage.getItem('user');
-    let userData = user && JSON.parse(user)[0];
-    return this.http.get<order[]>(`http://localhost:3333/orders?userId=${userData.id}`)
-      .subscribe((result) => {
-        this.orderLength.emit(result)
-        if (result.length) {
-          this.orderData.emit(result);
-          this.router.navigate(['my-orders'])
-        }
-        else {
-          this.router.navigate(['/'])
-        }
-      })
-  }
-
-  localOrderList() {
-    return this.http.get<order[]>(`http://localhost:3333/orders`)
-      .subscribe((result) => {
-        this.orderLength.emit(result)
-        if (result.length) {
-          this.orderData.emit(result);
-          this.router.navigate(['my-orders'])
-        }
-        else {
-          this.router.navigate(['/'])
-        }
-      })
-  }
-
   deleteCartItems(cartId: number) {
     return this.http.delete(`http://localhost:3333/cart/${cartId}`,
       { observe: 'response' }).subscribe((result) => {
@@ -128,19 +119,46 @@ export class ProductService {
       });
   }
 
-  getOrderLength() {
+  userOrder(data: order) {
+    return this.http.post('http://localhost:3333/orders', data)
+  }
+
+  userOrderList() {
     let user = localStorage.getItem('user');
-    let userData = user && JSON.parse(user)[0];
-    return userData && this.http.get<order[]>(`http://localhost:3333/orders?userId=${userData.id}`)
-      .subscribe((result) => {
-        if (result.length) {
-          this.orderLength.emit(result)
-        }
-      })
+    let userId = user && JSON.parse(user)[0].id;
+    if (userId) {
+      this.http.get<order[]>(`http://localhost:3333/orders?userId=${userId}`)
+        .subscribe((result) => {
+          if (result.length) {
+            this.orderData.emit(result);
+            this.orderLength.emit(result)
+          }
+          else {
+            this.router.navigate(['/'])
+          }
+        })
+    }
+  }
+
+  getUserOrder(userId: number) {
+    return this.http.get<order[]>(`http://localhost:3333/orders?userId=${userId}`)
+  }
+
+  getUserOrderLength() {
+    let user = localStorage.getItem('user');
+    let userId = user && JSON.parse(user)[0].id;
+    if (userId) {
+      this.http.get<order[]>(`http://localhost:3333/orders?userId=${userId}`)
+        .subscribe((result) => {
+          if (result.length) {
+            this.orderLength.emit(result)
+          }
+        })
+    }
   }
 
   cancelOrder(id: number) {
-    return this.http.delete(`http://localhost:3333/orders/${id}`)
+    return this.http.delete<order[]>(`http://localhost:3333/orders/${id}`)
   }
 
 }

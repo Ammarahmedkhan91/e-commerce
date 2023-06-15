@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit {
 
-  cartData: cart[] | undefined;
+  userCartData: cart[] | undefined;
+  localCartData: cart | undefined;
   orderMsg: string | undefined;
   summary: summary = {
     price: 0,
@@ -23,12 +24,29 @@ export class CheckoutComponent implements OnInit {
   constructor(private product: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+    this.buyProduct();
+  }
 
-    let productId = localStorage.getItem('productId')
-    if (productId) {
-      this.cartItems();
+  buyProduct() {
+
+    let localProduct = localStorage.getItem('product');
+    if (localProduct) {
+      let product = JSON.parse(localProduct);
+      product['productId'] = product['id'];
+      delete product.id;
+      this.localCartData = product;
+      let price: number = 0;
+      if (this.localCartData && this.localCartData.quantity) {
+        let x = Number(this.localCartData.price.toString().replace(/[^\d.-]/g, '')) * this.localCartData.quantity;
+        price += x;
+      }
+      this.summary.price = Math.floor(price);
+      this.summary.discount = Math.floor(price / 500);
+      this.summary.tax = Math.floor(price / 50);
+      this.summary.delivery = 100;
+      this.summary.total = this.summary.price - this.summary.discount + this.summary.tax + this.summary.delivery;
     } else {
-      this.getCartItems();
+      this.router.navigate(['/'])
     }
 
   }
@@ -36,11 +54,11 @@ export class CheckoutComponent implements OnInit {
   cartItems() {
     this.product.cartItems().subscribe((result) => {
       let price: number = 0;
-      this.cartData = result;
+      this.userCartData = result;
       result.forEach((item) => {
         if (item.quantity) {
           let x = Number(item.price.toString().replace(/[^\d.-]/g, '')) * item.quantity;
-          price += x
+          price += x;
         }
       })
       this.summary.price = Math.floor(price);
@@ -49,16 +67,16 @@ export class CheckoutComponent implements OnInit {
       this.summary.delivery = 100;
       this.summary.total = this.summary.price - this.summary.discount + this.summary.tax + this.summary.delivery;
 
-      if (!this.cartData.length) {
+      if (!this.userCartData.length) {
         this.router.navigate(['/'])
       }
-
     });
+
   }
 
   getCartItems() {
     this.product.userCartItems().subscribe((result) => {
-      this.cartData = result;
+      this.userCartData = result;
       let price: number = 0;
       result.forEach((item) => {
         if (item.quantity) {
@@ -72,7 +90,7 @@ export class CheckoutComponent implements OnInit {
       this.summary.delivery = 100;
       this.summary.total = this.summary.price - this.summary.discount + this.summary.tax + this.summary.delivery;
 
-      if (!this.cartData.length) {
+      if (!this.userCartData.length) {
         this.router.navigate(['/'])
       }
 
@@ -80,58 +98,40 @@ export class CheckoutComponent implements OnInit {
   }
 
   orderNow(data: { email: string, address: string, contact: string }) {
+
     let user = localStorage.getItem('user');
+    let localProduct = localStorage.getItem('product');
+
     let userId = user && JSON.parse(user)[0].id;
-    if (user) {
+    let productId = localProduct && JSON.parse(localProduct).id;
+    let productName = localProduct && JSON.parse(localProduct).name;
+    let productImage = localProduct && JSON.parse(localProduct).image;
+
       if (this.summary.total) {
         let orderData: order = {
           ...data,
+          productName,
           totalPrice: this.summary.total,
-          userId,
+          productImage,
+          userId: userId,
+          productId,
           id: undefined
         }
 
-        this.product.orderNow(orderData).subscribe((result) => {
+        this.product.userOrder(orderData).subscribe((result) => {
           if (result) {
-            this.orderMsg = "Your order has been placed"
+            this.orderMsg = "Your order has been placed";
+            this.product.getUserOrderLength();
             setTimeout(() => {
               this.router.navigate(['my-orders']);
+              localStorage.removeItem('product');
               this.orderMsg = undefined;
             }, 3000);
           }
-        })
-
-        this.cartData?.forEach((item) => {
-          item.id && this.product.deleteCartItems(item.id)
-        })
+        });
       }
 
-    } else {
-      if (this.summary.total) {
-        let orderData: order = {
-          ...data,
-          totalPrice: this.summary.total,
-          userId: undefined,
-          id: undefined
-        }
+  };
 
-        this.product.orderNow(orderData).subscribe((result) => {
-          if (result) {
-            this.orderMsg = "Your order has been placed"
-            setTimeout(() => {
-              this.router.navigate(['my-orders']);
-              localStorage.removeItem('productId')
-              this.orderMsg = undefined;
-            }, 3000);
-          }
-        })
-
-        this.cartData?.forEach((item) => {
-          item.id && this.product.deleteCartItems(item.id)
-        })
-
-      }
-    }
-  }
 
 }
