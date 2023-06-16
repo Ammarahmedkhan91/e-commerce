@@ -28,10 +28,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.product.orderLength.subscribe((items) => {
+      this.orderLength = items.length;
+    });
+
     let user = localStorage.getItem('user');
 
     if (user) {
-
+      
       this.product.getUserOrderLength();
       this.product.orderLength.subscribe((items) => {
         this.orderLength = items.length;
@@ -90,6 +94,8 @@ export class HeaderComponent implements OnInit {
   }
   userLogOut() {
     localStorage.removeItem('user');
+    localStorage.removeItem('product');
+    localStorage.removeItem('productId');
     this.router.navigate(['user-auth'])
     this.product.cartLength.emit([]);
     this.product.orderLength.emit([]);

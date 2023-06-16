@@ -31,6 +31,7 @@ export class UserAuthComponent {
       }
       else {
         this.localCartToRemoteCart();
+        this.product.getUserOrderLength();
       }
     })
   }
