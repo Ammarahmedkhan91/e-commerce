@@ -114,28 +114,5 @@
     }
   ],
   "cart": [],
-  "orders": [
-    {
-      "email": "ammarkhan427@yahoo.com",
-      "address": "asdf",
-      "contact": "sdf",
-      "productName": "OPPO A16e",
-      "totalPrice": 44076,
-      "productImage": "https://www.pakmobizone.pk/wp-content/uploads/2022/03/Oppo-A16e-Midnight-Black-3.jpg",
-      "userId": 1,
-      "productId": 1,
-      "id": 1
-    },
-    {
-      "email": "nasirfareed15@gmail.com",
-      "address": "sdfs",
-      "contact": "sdf",
-      "productName": "IPhone 14 Pro Max",
-      "totalPrice": 218970,
-      "productImage": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-pro-max-1.jpg",
-      "userId": 2,
-      "productId": 2,
-      "id": 2
-    }
-  ]
+  "orders": []
 }
