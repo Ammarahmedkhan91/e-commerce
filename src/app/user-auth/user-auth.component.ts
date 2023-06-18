@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { login, signUp, cart, product } from '../data-type';
 import { UserService } from '../services/user.service';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-auth',
@@ -13,7 +14,7 @@ export class UserAuthComponent {
   showLogin = true;
   authError: string = '';
 
-  constructor(private user: UserService, private product: ProductService) { }
+  constructor(private user: UserService, private product: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.user.reloadUser()
@@ -32,6 +33,12 @@ export class UserAuthComponent {
       else {
         this.localCartToRemoteCart();
         this.product.getUserOrderLength();
+
+        let id = localStorage.getItem('id');
+        if (id) {
+          this.router.navigate([`details/${id}`])
+        }
+
       }
     })
   }
@@ -49,10 +56,12 @@ export class UserAuthComponent {
     let localCart = localStorage.getItem('localCart');
     let user = localStorage.getItem('user');
     let userId = user && JSON.parse(user)[0].id;
+    
     if (localCart) {
       let cartDataList: product[] = JSON.parse(localCart);
       cartDataList.forEach((product: product, index) => {
 
+        delete product.sellerId;
         let cartData: cart = {
           ...product,
           productId: product.id,

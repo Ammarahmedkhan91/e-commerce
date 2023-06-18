@@ -28,14 +28,23 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    let localCart = localStorage.getItem('localCart');
+    if (!localCart) {
+      localStorage.setItem('localCart', JSON.stringify([]))
+    }
+
     this.product.orderLength.subscribe((items) => {
       this.orderLength = items.length;
     });
 
+    this.product.cartLength.subscribe((items) => {
+      this.cartItems = items.length;
+    })
+
     let user = localStorage.getItem('user');
 
     if (user) {
-      
+
       this.product.getUserOrderLength();
       this.product.orderLength.subscribe((items) => {
         this.orderLength = items.length;
@@ -56,13 +65,13 @@ export class HeaderComponent implements OnInit {
         });
       }
 
-      let localOrder = localStorage.getItem('order');
-      if (localOrder) {
-        this.orderLength = JSON.parse(localOrder).length;
-        this.product.localOrderLength.subscribe((items) => {
-          this.orderLength = items.length;
-        });
-      }
+      // let localOrder = localStorage.getItem('order');
+      // if (localOrder) {
+      //   this.orderLength = JSON.parse(localOrder).length;
+      //   this.product.localOrderLength.subscribe((items) => {
+      //     this.orderLength = items.length;
+      //   });
+      // }
 
     }
 
@@ -143,7 +152,6 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToOrderPage() {
-
     let user = localStorage.getItem('user');
     if (!user) {
       this.router.navigate(['user-auth']);
@@ -152,7 +160,12 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['my-orders']);
       }
     }
-    
+  }
+
+  navigateToCartPage() {
+    if (this.cartItems > 0) {
+      this.router.navigate(['user-auth']);
+    } 
   }
 
 }

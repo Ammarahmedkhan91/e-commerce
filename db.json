@@ -117,36 +117,25 @@
   "orders": [
     {
       "email": "ammarkhan427@yahoo.com",
-      "address": "szdf",
-      "contact": "sd",
+      "address": "asdf",
+      "contact": "sdf",
+      "productName": "OPPO A16e",
+      "totalPrice": 44076,
+      "productImage": "https://www.pakmobizone.pk/wp-content/uploads/2022/03/Oppo-A16e-Midnight-Black-3.jpg",
+      "userId": 1,
+      "productId": 1,
+      "id": 1
+    },
+    {
+      "email": "nasirfareed15@gmail.com",
+      "address": "sdfs",
+      "contact": "sdf",
       "productName": "IPhone 14 Pro Max",
       "totalPrice": 218970,
       "productImage": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-pro-max-1.jpg",
-      "userId": 1,
+      "userId": 2,
       "productId": 2,
       "id": 2
-    },
-    {
-      "email": "ammarkhan427@yahoo.com",
-      "address": "asdf",
-      "contact": "sd",
-      "productName": "Tecno Spark 5 Pro",
-      "totalPrice": 21478,
-      "productImage": "https://www.mac.net.pk/wp-content/uploads/2020/06/3-2.png",
-      "userId": 1,
-      "productId": 5,
-      "id": 3
-    },
-    {
-      "email": "ammarkhan427@yahoo.com",
-      "address": "asd",
-      "contact": "sdsd",
-      "productName": "Samsung FHD Tv T5300",
-      "totalPrice": 127349,
-      "productImage": "https://images.samsung.com/is/image/samsung/pk-fhd-t5300-ua43t5300auxmm-frontblack-265965080?$650_519_PNG$",
-      "userId": 1,
-      "productId": 3,
-      "id": 4
     }
   ]
 }

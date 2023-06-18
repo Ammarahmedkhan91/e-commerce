@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 export class ProductService {
 
   localCartLength = new EventEmitter<product[] | []>();
-  localOrderLength = new EventEmitter<order[] | []>();
-  cartLength = new EventEmitter<product[] | []>();
+  // localOrderLength = new EventEmitter<order[] | []>();
+  cartLength = new EventEmitter<cart[] | []>();
   orderLength = new EventEmitter<order[] | []>();
   orderData = new EventEmitter<order[] | undefined>();
 
@@ -78,8 +78,18 @@ export class ProductService {
     }
   }
 
+  // cartItems() {
+  //   return this.http.get<cart[]>(`http://localhost:3333/cart`);
+  // }
+
+  userCartItems() {
+    let user = localStorage.getItem('user');
+    let userData = user && JSON.parse(user)[0];
+    return this.http.get<cart[]>(`http://localhost:3333/cart?userId=${userData.id}`);
+  }
+
   getCartItems(userId: number) {
-    return this.http.get<product[]>(`http://localhost:3333/cart?userId=${userId}`,
+    return this.http.get<cart[]>(`http://localhost:3333/cart?userId=${userId}`,
       { observe: 'response' }).subscribe((res) => {
         if (res && res.body) {
           this.cartLength.emit(res.body);
@@ -88,26 +98,16 @@ export class ProductService {
   }
 
   getCartLength() {
-    return this.http.get<product[]>(`http://localhost:3333/cart`,
+    let user = localStorage.getItem('user');
+    let userData = user && JSON.parse(user)[0];
+    return userData && this.http.get<cart[]>(`http://localhost:3333/cart?userId=${userData.id}`,
       { observe: 'response' }).subscribe((res) => {
-        if (res && res.body) {
-          this.cartLength.emit(res.body);
-        }
-      });
+        res.body && this.cartLength.emit(res.body);
+      })
   }
 
   removeToCart(cartId: number) {
     return this.http.delete(`http://localhost:3333/cart/${cartId}`)
-  }
-
-  cartItems() {
-    return this.http.get<cart[]>(`http://localhost:3333/cart`);
-  }
-
-  userCartItems() {
-    let user = localStorage.getItem('user');
-    let userData = user && JSON.parse(user)[0];
-    return this.http.get<cart[]>(`http://localhost:3333/cart?userId=${userData.id}`);
   }
 
   deleteCartItems(cartId: number) {

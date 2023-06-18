@@ -20,19 +20,20 @@
     <div class="menu" [ngSwitch]="menuType">
         <ul *ngSwitchCase="'default'">
             <li><a class="cursor" (click)="navigateToOrderPage()">My Orders ({{orderLength}})</a></li>
-            <li><a [class]="cartItems === 0 ? 'cart' : null" [routerLink]="cartItems > 0 ? 'user-auth' : null">Cart ({{cartItems}})</a></li>
+            <!-- <li><a [class]="cartItems === 0 ? 'cart' : null" [routerLink]="cartItems > 0 ? 'user-auth' : null">Cart ({{cartItems}})</a></li> -->
+            <li><a [class]="cartItems === 0 ? 'context-menu' : 'pointer'" (click)="navigateToCartPage()" >Cart ({{cartItems}})</a></li>
             <li><a routerLink="seller-auth">Seller</a></li>
             <li><a routerLink="user-auth">Login</a></li>
         </ul>
         <ul *ngSwitchCase="'user'">
-            <li><a class="user-name">{{userName | titlecase}}</a></li>
-            <li><a [class]="orderLength === 0 ? 'orderFalse' : 'orderTrue'" (click)="navigateToOrderPage()">My Orders ({{orderLength}})</a></li>
+            <li><a class="context-menu">{{userName | titlecase}}</a></li>
+            <li><a [class]="orderLength === 0 ? 'context-menu' : 'pointer'" (click)="navigateToOrderPage()">My Orders ({{orderLength}})</a></li>
             <li><a [class]="cartItems === 0 ? 'cart' : null" [routerLink]="cartItems > 0 ? 'cart-page' : null">Cart ({{cartItems}})</a></li>
             <li><a routerLink="seller-auth">Seller</a></li>
             <li><a class="logOut" (click)="userLogOut()">Logout</a></li>
         </ul>
         <ul *ngSwitchCase="'seller'">
-            <li><a class="seller-name">{{sellerName | titlecase}}</a></li>
+            <li><a class="context-menu">{{sellerName | titlecase}}</a></li>
             <li><a routerLink="/seller-add-product">Add Product</a></li>
             <li><a routerLink="/seller-home">Product List</a></li>
             <li><a routerLink="user-auth">User</a></li>

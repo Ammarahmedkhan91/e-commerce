@@ -18,9 +18,9 @@ export interface product{
     category:string,
     description:string,
     image:string,
-    sellerId: number | undefined,
     quantity: number | undefined,
-    productId: number | undefined
+    productId: number | undefined,
+    sellerId: number | undefined
 }
 
 export interface cart{

@@ -52,7 +52,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   cartItems() {
-    this.product.cartItems().subscribe((result) => {
+    this.product.userCartItems().subscribe((result) => {
       let price: number = 0;
       this.userCartData = result;
       result.forEach((item) => {

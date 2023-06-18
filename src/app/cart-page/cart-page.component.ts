@@ -22,7 +22,7 @@ export class CartPageComponent implements OnInit {
   constructor(private product: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    this.product.cartItems().subscribe((result) => {
+    this.product.userCartItems().subscribe((result) => {
       this.cartData = result;
       if (!this.cartData.length) {
         this.router.navigate(['/'])
@@ -32,8 +32,8 @@ export class CartPageComponent implements OnInit {
 
   removeToCart(cartId: number | undefined) {
     cartId && this.product.removeToCart(cartId).subscribe(() => {
-      this.product.getCartLength();
-      this.product.cartItems().subscribe((result) => {
+      this.product.userCartItems().subscribe((result) => {
+        this.product.cartLength.emit(result);
         this.cartData = result;
         if (!this.cartData.length) {
           this.router.navigate(['/'])
